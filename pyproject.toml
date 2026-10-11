@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bakkara-analyzer"
+version = "0.1.0"
+description = "Analyse statistique et estimation chronologique des parties Statistika Bakkara"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.2",
+  "numpy>=2.0",
+  "python-dotenv>=1.0",
+  "streamlit>=1.39",
+  "scikit-learn>=1.5",
+  "pillow>=10.4",
+  "telethon>=1.36",
+]
+
+[project.optional-dependencies]
+ocr = ["pytesseract>=0.3"]
+dev = ["pytest>=8.3"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+testpaths = ["tests"]

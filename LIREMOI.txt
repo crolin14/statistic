@@ -1,0 +1,19 @@
+Tout est local. Plus besoin du cloud.
+
+Sur TON PC :
+
+  mkdir -p /home/crolin/Documents
+  unzip statistic.zip -d /home/crolin/Documents
+  cd /home/crolin/Documents/statistic
+  chmod +x lancer.sh
+  ./lancer.sh
+
+Puis ouvre http://127.0.0.1:48217 et connecte Telegram sur CET ordinateur.
+
+Si Fichiers (GNOME) est vide : ce n’est pas le disque du cloud.
+Copie statistic.zip sur le laptop, puis les commandes ci-dessus.
+
+lancer.sh se place dans son propre dossier ; aucun /workspace n’est requis.
+
+Ne commite jamais .env ni *.session.
+Voir README.md.

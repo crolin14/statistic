@@ -1,0 +1,13 @@
+pandas>=2.2
+numpy>=2.0
+python-dotenv>=1.0
+streamlit>=1.39
+scikit-learn>=1.5
+pillow>=10.4
+telethon>=1.36
+
+[dev]
+pytest>=8.3
+
+[ocr]
+pytesseract>=0.3

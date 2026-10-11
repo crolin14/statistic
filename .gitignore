@@ -1,0 +1,17 @@
+.venv/
+assets/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.env
+*.session
+*.session-journal
+data/*.db
+data/media/
+data/telegram_login.json
+data/telegram_authorized.json
+.streamlit/secrets.toml
+statistic-local.zip
+statistic.zip
+*.zip

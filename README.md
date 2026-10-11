@@ -1,0 +1,82 @@
+# Statistika Bakkara
+
+**Tout est local. Plus besoin du cloud.**
+
+Cette application tourne entièrement sur ton PC. Aucun runtime cloud n’est requis après copie.
+
+Canal Telegram : [@statistika_baccarat](https://t.me/statistika_baccarat)
+
+Les données (SQLite, images, session Telegram, `.env`) restent dans **`/home/crolin/Documents/statistic`**.
+
+## Sur ton PC
+
+1. Décompresse **ou** copie le dossier vers `/home/crolin/Documents/statistic`.
+2. Rends le script exécutable : `chmod +x lancer.sh`
+3. Lance : `./lancer.sh`
+4. Ouvre l’URL affichée par le script (**http://127.0.0.1:48217** par défaut ; port suivant si 48217 est pris par un autre processus)
+5. Connecte **Telegram sur ton propre PC** (onglet Telegram de l’app).
+
+Commandes exactes :
+
+```bash
+mkdir -p /home/crolin/Documents
+unzip statistic.zip -d /home/crolin/Documents
+cd /home/crolin/Documents/statistic
+chmod +x lancer.sh
+./lancer.sh
+```
+
+Si `statistic.zip` est absent, ce n’est pas grave : `./lancer.sh` continue dès que le dossier contient `app.py`.
+
+Si le dossier est déjà copié (sans zip) :
+
+```bash
+cd /home/crolin/Documents/statistic
+chmod +x lancer.sh
+./lancer.sh
+```
+
+Le script se place dans **son propre dossier** (`cd` vers le répertoire de `lancer.sh`), crée `.venv`, installe le paquet, puis lance Streamlit. Il ne dépend pas de `/workspace`.
+
+Relancer `./lancer.sh` alors que l’app tourne déjà : le script arrête **uniquement** l’ancien Streamlit de ce projet (`app.py` dans ce dossier) et réutilise 48217. Si le port est pris par un **autre** processus, il prend le prochain port libre (48218, …) et affiche l’URL réelle.
+
+### Si Fichiers est encore vide sur TON laptop
+
+Ce cloud n’est **pas** ton disque. Un dossier rempli ici n’apparaît pas dans GNOME sur ta machine. Tu dois **copier `statistic.zip` sur le PC** (téléchargement, clé USB, scp), puis lancer les commandes ci-dessus.
+
+```bash
+# depuis le dossier où tu as enregistré statistic.zip
+mkdir -p /home/crolin/Documents
+unzip -o statistic.zip -d /home/crolin/Documents
+cd /home/crolin/Documents/statistic
+ls -la
+chmod +x lancer.sh
+./lancer.sh
+```
+
+Puis ouvre http://127.0.0.1:48217 et connecte Telegram **ici**, pas dans le cloud.
+
+## Telegram (sur cet ordinateur)
+
+1. Crée `api_id` / `api_hash` sur [my.telegram.org](https://my.telegram.org) et mets-les dans `.env` (copie `.env.example` si besoin). Ne commite jamais `.env` ni `*.session`.
+2. Onglet **Telegram** : numéro international (`+33612345678`).
+3. **Envoyer le code** → saisis le code reçu dans l’app Telegram / SMS.
+4. **Collecter l’historique** ou **Sync maintenant**. Ton compte doit être membre du canal.
+
+## À la main (équivalent de `./lancer.sh`)
+
+```bash
+cd /home/crolin/Documents/statistic
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .
+streamlit run app.py --server.port 48217 --server.address 0.0.0.0
+```
+
+## Chemins
+
+1. `BAKKARA_HOME` si défini
+2. `/home/crolin/Documents/statistic` s’il est créable
+3. sinon `$HOME/Documents/statistic`
+
+**Ce n’est pas un prédicteur parfait.** Les fréquences historiques ne garantissent pas le prochain coup.
